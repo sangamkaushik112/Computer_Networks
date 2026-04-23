@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit 4 - Complete Network & Transport Layer</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    min-height:100vh;
+    line-height:1.6;
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+nav h1{font-size:26px; font-weight:700;}
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    padding:8px 16px;
+    border-radius:20px;
+    transition:0.3s;
+}
+nav a:hover{background:rgba(255,255,255,0.2);}
+
+/* MAIN CONTAINER */
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    margin-top:40px;
+    padding-bottom:60px;
+}
+
+/* CONTENT CARDS */
+.section-card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.section-card h2{
+    margin-bottom:20px;
+    color:#ffcc00;
+    font-size:26px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.section-card h3{
+    margin:22px 0 12px 0;
+    color:#ff4b2b;
+    font-size:20px;
+    padding-left:10px;
+    border-left:4px solid #ff4b2b;
+}
+
+.section-card h4{
+    color:#ffd700;
+    margin:15px 0 10px 0;
+    font-size:18px;
+}
+
+.section-card p{
+    font-size:16px;
+    margin-bottom:15px;
+    text-align:justify;
+}
+
+.section-card ul{ margin:15px 0 15px 25px; }
+.section-card li{ margin-bottom:8px; font-size:15px; }
+.section-card strong{ color:#ffcc00; }
+
+/* TABLE STYLING */
+.table-container{ overflow-x:auto; margin:20px 0; }
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    background:rgba(255,255,255,0.1);
+    border-radius:10px;
+    overflow:hidden;
+}
+.compare-table th, .compare-table td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+.compare-table th{
+    background:#ff4b2b;
+    color:white;
+    font-weight:bold;
+}
+.compare-table tr:hover{ background:rgba(255,255,255,0.2); }
+
+/* CODE HIGHLIGHT */
+.port-code{
+    background:#1a1a2e;
+    padding:6px 10px;
+    border-radius:6px;
+    font-family:monospace;
+    color:#00ff88;
+    font-size:14px;
+}
+
+/* UNIT NAVIGATION */
+.nav-buttons{
+    margin-top:60px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+.btn{
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:30px;
+    background:linear-gradient(45deg, #ff4b2b, #ff6b35);
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(255,75,43,0.4);
+}
+.btn:hover{
+    background:linear-gradient(45deg, #ffcc00, #ffd700);
+    color:black;
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(255,204,0,0.4);
+}
+
+/* FOOTER */
+footer{
+    text-align:center;
+    margin-top:80px;
+    padding:30px;
+    opacity:0.9;
+    background:rgba(0,0,0,0.2);
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+@media (max-width:768px){
+    .container{width:95%; padding:10px;}
+    .section-card{padding:20px;}
+    nav{padding:15px 5%; flex-direction:column; gap:10px;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h1><i class="fa-solid fa-network-wired"></i> Computer Networks</h1>
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+</nav>
+
+<div class="container">
+
+<!-- NETWORK LAYER SECTION -->
+<div class="section-card">
+    <h1>Unit 4</h1>
+    <h2><i class="fa-solid fa-layer-group"></i> Network Layer Overview</h2>
+    <p>
+        The <strong>network layer</strong> routes data packets from source to destination across multiple networks. 
+        It determines best path and ensures packets reach correct destination using <strong>IP addressing</strong>.
+    </p>
+    <ul>
+        <li><strong>Logical addressing:</strong> IP addresses uniquely identify devices</li>
+        <li><strong>Internetworking:</strong> Connects multiple networks (like Internet)</li>
+        <li><strong>Tunneling:</strong> Secure data encapsulation across networks</li>
+        <li><strong>Address mapping:</strong> Logical → Physical address conversion</li>
+    </ul>
+</div>
+
+<!-- ICMP & IGMP -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-bug"></i> ICMP & IGMP Protocols</h2>
+    <ul>
+        <li><strong>ICMP:</strong> Error reporting + diagnostics (ping, traceroute)</li>
+        <li><strong>IGMP:</strong> Manages multicast group memberships</li>
+        <li><strong>Forwarding:</strong> Router-to-router packet sending</li>
+    </ul>
+    <p><strong>Unicast:</strong> Single destination | <strong>Multicast:</strong> Multiple receivers</p>
+</div>
+
+<!-- TRANSPORT LAYER OVERVIEW -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-layer-group"></i> Transport Layer (Layer 4)</h2>
+    <p>
+        Handles <strong>end-to-end communication</strong> between applications on different hosts. 
+        Sits above Network Layer (L3), below Application Layer (L5-7).
+    </p>
+    <p><strong>Main Protocols:</strong> <strong>TCP</strong> (reliable), <strong>UDP</strong> (fast), <strong>SCTP</strong> (multi-stream)</p>
+</div>
+
+<!-- PROCESS-TO-PROCESS DELIVERY -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-exchange-alt"></i> Process-to-Process Delivery</h2>
+    
+    <h3>Delivery Types</h3>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Type</th><th>Layer</th><th>Scope</th><th>Example</th></tr>
+            <tr><td>Node-to-Node</td><td>L2</td><td>LAN</td><td>Switch→PC</td></tr>
+            <tr><td>Host-to-Host</td><td><strong>L3</strong></td><td>Internet</td><td>IP packet</td></tr>
+            <tr><td><strong>Process-to-Process</strong></td><td><strong>L4</strong></td><td><strong>Apps</strong></td><td><strong>Port 80→80</strong></td></tr>
+        </table>
+    </div>
+    
+    <h3>Port Numbers (0-65535)</h3>
+    <ul>
+        <li><strong>Well-known (0-1023):</strong> HTTP(<span class="port-code">80</span>), FTP(<span class="port-code">21</span>), SSH(<span class="port-code">22</span>)</li>
+        <li><strong>Registered (1024-49151):</strong> Custom apps</li>
+        <li><strong>Dynamic (49152-65535):</strong> Client temp ports</li>
+    </ul>
+    
+    <h4>Multiplexing:</h4> <p>Chrome+Email+VLC → <strong>1 Transport Layer</strong> → Adds ports</p>
+    <h4>Demultiplexing:</h4> <p>Reads dest port → Delivers to correct app</p>
+</div>
+
+<!-- TRANSPORT PROTOCOLS -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-server"></i> Transport Protocols</h2>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Protocol</th><th>Type</th><th>Features</th><th>Uses</th></tr>
+            <tr><td><strong>UDP</strong></td><td>Connectionless</td><td>Fast, unreliable</td><td>VoIP, Video, DNS</td></tr>
+            <tr><td><strong>TCP</strong></td><td>Connection-oriented</td><td>Reliable, ordered</td><td>HTTP, FTP, Email</td></tr>
+            <tr><td><strong>SCTP</strong></td><td>Multi-stream</td><td>TCP+UDP features</td><td>Telephony signaling</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- DATA TRAFFIC MANAGEMENT -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-traffic-light"></i> Data Traffic Management</h2>
+    
+    <h3>Traffic Types</h3>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Type</th><th>Example</th><th>Requirements</th><th>Protocol</th></tr>
+            <tr><td>Constant Bit Rate</td><td>VoIP</td><td>Low jitter</td><td>UDP+RTP</td></tr>
+            <tr><td>Variable Bit Rate</td><td>Video stream</td><td>Adapt bitrate</td><td>UDP+RTP</td></tr>
+            <tr><td>Bursty</td><td>Web browsing</td><td>Reliability</td><td>TCP</td></tr>
+            <tr><td>Interactive</td><td>SSH typing</td><td>Low delay</td><td>TCP</td></tr>
+        </table>
+    </div>
+    
+    <h3>Management Techniques</h3>
+    <ul>
+        <li><strong>Segmentation:</strong> Large messages → Small segments</li>
+        <li><strong>Flow Control:</strong> Prevent receiver overload</li>
+        <li><strong>Congestion Control:</strong> Avoid network jam</li>
+        <li><strong>Error Control:</strong> Detect/fix corrupt data</li>
+    </ul>
+</div>
+
+<!-- QUALITY OF SERVICE -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-star"></i> Quality of Service (QoS)</h2>
+    
+    <h3>QoS Parameters</h3>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Parameter</th><th>Measures</th><th>For</th><th>Target</th></tr>
+            <tr><td>Throughput</td><td>bytes/sec</td><td>Video</td><td>5 Mbps min</td></tr>
+            <tr><td>Delay</td><td>End-to-end</td><td>VoIP</td><td>&lt;150ms</td></tr>
+            <tr><td>Jitter</td><td>Delay variation</td><td>Video calls</td><td>&lt;30ms</td></tr>
+            <tr><td>Packet Loss</td><td>% lost</td><td>Real-time</td><td>&lt;1%</td></tr>
+        </table>
+    </div>
+    
+    <h4>TCP vs UDP:</h4>
+    <ul>
+        <li><strong>TCP:</strong> Reliable, VARIABLE delay (retransmits)</li>
+        <li><strong>UDP:</strong> FIXED low delay, unreliable</li>
+    </ul>
+    
+    <h3>Implementation:</h3>
+    <ul>
+        <li>Port identification (HTTP<span class="port-code">80</span>, VoIP<span class="port-code">5060</span>)</li>
+        <li>Traffic shaping, Priority queuing</li>
+        <li>Bandwidth allocation</li>
+    </ul>
+</div>
+
+<!-- INTEGRATED SERVICES -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-reservation"></i> Integrated Services (IntServ)</h2>
+    
+    <h3>Per-Flow Reservation</h3>
+    <p>Each flow (srcIP+dstIP+srcPort+dstPort) gets reserved bandwidth.</p>
+    
+    <h4>Process:</h4>
+    <ol style="margin-left:25px; margin-bottom:15px;">
+        <li>App sends <strong>RSVP</strong> message</li>
+        <li><strong>All routers</strong> reserve bandwidth</li>
+        <li>Flow gets <strong>GUARANTEED QoS</strong></li>
+        <li>End → Resources released</li>
+    </ol>
+    
+    <h4>Components:</h4>
+    <ul>
+        <li><strong>RSVP:</strong> Signaling</li>
+        <li><strong>Admission Control:</strong> Bandwidth check</li>
+        <li><strong>Classifier:</strong> Packet grouping</li>
+        <li><strong>Scheduler:</strong> Priority queue</li>
+    </ul>
+</div>
+
+<!-- IntServ vs DiffServ -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-balance-scale"></i> IntServ vs DiffServ</h2>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Feature</th><th>IntServ</th><th>DiffServ</th></tr>
+            <tr><td>Granularity</td><td>Per flow</td><td>Per class</td></tr>
+            <tr><td>Scalability</td><td>Poor</td><td>Excellent</td></tr>
+            <tr><td>Complexity</td><td>High</td><td>Low</td></tr>
+            <tr><td>Guarantees</td><td>Hard</td><td>Best effort</td></tr>
+            <tr><td>Best for</td><td>LANs</td><td>Internet</td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-buttons">
+    <a href="Unit1.html" class="btn">Unit 1<i class="fa-solid fa-chevron-left"></i></a>
+    <a href="Unit2.html" class="btn">Unit 2 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit3.html" class="btn">Unit 3 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit5.html" class="btn">Unit 5 <i class="fa-solid fa-chevron-right"></i></a>
+</div>
+
+</div>
+
+<footer>
+    <p><i class="fa-solid fa-graduation-cap"></i> © 2026 Yash Fauzdar & Sangam Kaushik | BCA Complete Computer Networks</p>
+</footer>
+
+</body>
+</html>

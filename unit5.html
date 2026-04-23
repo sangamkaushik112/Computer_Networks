@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 5 - Complete Application Layer</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    min-height:100vh;
+    line-height:1.6;
+}
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+nav h1{font-size:26px; font-weight:700;}
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    padding:8px 16px;
+    border-radius:20px;
+    transition:0.3s;
+}
+nav a:hover{background:rgba(255,255,255,0.2);}
+/* MAIN CONTAINER */
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    margin-top:40px;
+    padding-bottom:60px;
+}
+/* CONTENT CARDS */
+.section-card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    margin-bottom:25px;
+    border:1px solid rgba(255,255,255,0.2);
+}
+.section-card h2{
+    margin-bottom:20px;
+    color:#ffcc00;
+    font-size:26px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+.section-card h3{
+    margin:22px 0 12px 0;
+    color:#ff4b2b;
+    font-size:20px;
+    padding-left:10px;
+    border-left:4px solid #ff4b2b;
+}
+.section-card h4{
+    color:#ffd700;
+    margin:15px 0 10px 0;
+    font-size:18px;
+}
+.section-card p{font-size:16px; margin-bottom:15px; text-align:justify;}
+.section-card ul{margin:15px 0 15px 25px;}
+.section-card li{margin-bottom:8px; font-size:15px;}
+.section-card strong{color:#ffcc00;}
+/* TABLE STYLING */
+.table-container{overflow-x:auto; margin:20px 0;}
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    background:rgba(255,255,255,0.1);
+    border-radius:10px;
+    overflow:hidden;
+}
+.compare-table th,.compare-table td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+.compare-table th{background:#ff4b2b; color:white; font-weight:bold;}
+.compare-table tr:hover{background:rgba(255,255,255,0.2);}
+/* CODE HIGHLIGHT */
+.port-code{
+    background:#1a1a2e;
+    padding:6px 10px;
+    border-radius:6px;
+    font-family:monospace;
+    color:#00ff88;
+    font-size:14px;
+}
+.code-block{
+    background:#1a1a2e;
+    padding:15px;
+    border-radius:10px;
+    font-family:monospace;
+    margin:15px 0;
+    color:#00ff88;
+    overflow-x:auto;
+}
+/* UNIT NAVIGATION */
+.nav-buttons{
+    margin-top:60px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+.btn{
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:30px;
+    background:linear-gradient(45deg, #ff4b2b, #ff6b35);
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(255,75,43,0.4);
+}
+.btn:hover{
+    background:linear-gradient(45deg, #ffcc00, #ffd700);
+    color:black;
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(255,204,0,0.4);
+}
+/* FOOTER */
+footer{
+    text-align:center;
+    margin-top:80px;
+    padding:30px;
+    opacity:0.9;
+    background:rgba(0,0,0,0.2);
+    border-radius:20px;
+    margin-bottom:20px;
+}
+@media (max-width:768px){
+    .container{width:95%; padding:10px;}
+    .section-card{padding:20px;}
+    nav{padding:15px 5%; flex-direction:column; gap:10px;}
+}
+</style>
+</head>
+<body>
+<!-- NAVBAR -->
+<nav>
+    <h1><i class="fa-solid fa-network-wired"></i> Computer Networks</h1>
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+</nav>
+
+<div class="container">
+
+<!-- APPLICATION LAYER OVERVIEW -->
+<div class="section-card">
+    <h1>Unit 5</h1>
+    <h2><i class="fa-solid fa-layer-group"></i> Application Layer (Layer 7)</h2>
+    <p>
+        <strong>Topmost layer (Layer 7)</strong> of OSI model. Provides network services directly to user applications.
+        Handles interface between user software and network. <strong>Doesn't transmit data</strong> - formats and requests lower layers.
+    </p>
+    <p><strong>Key Services:</strong> File transfer, email, web access, remote login, name resolution</p>
+</div>
+
+<!-- DNS -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-globe"></i> DNS (Domain Name System)</h2>
+    
+    <h3>What DNS Does</h3>
+    <p>Translates <strong>human-readable domains</strong> (<code>google.com</code>) → <strong>machine-readable IPs</strong> (<code>142.250.190.78</code>)</p>
+    
+    <h4>DNS Resolution Process</h4>
+    <ol style="margin-left:25px;">
+        <li>Browser: Type <code>google.com</code></li>
+        <li>Local cache check</li>
+        <li>Recursive resolver → ISP DNS</li>
+        <li><strong>Root servers</strong> (13 worldwide) → TLD (.com)</li>
+        <li>TLD → <strong>Authoritative NS</strong></li>
+        <li>Google NS returns IP → <strong>Cached (TTL)</strong></li>
+    </ol>
+    
+    <h4>DNS Record Types</h4>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Type</th><th>Purpose</th><th>Example</th></tr>
+            <tr><td><strong>A</strong></td><td>IPv4</td><td>google.com → 142.250.190.78</td></tr>
+            <tr><td><strong>AAAA</strong></td><td>IPv6</td><td>google.com → 2607:f8b0:...</td></tr>
+            <tr><td><strong>CNAME</strong></td><td>Alias</td><td>www → google.com</td></tr>
+            <tr><td><strong>MX</strong></td><td>Mail</td><td>google.com → gmail-smtp...</td></tr>
+            <tr><td><strong>NS</strong></td><td>Name server</td><td>google.com → ns1.google.com</td></tr>
+        </table>
+    </div>
+    <p><strong>Port:</strong> UDP/TCP <span class="port-code">53</span> | <strong>Security:</strong> DNSSEC</p>
+</div>
+
+<!-- FTP -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-upload"></i> FTP (File Transfer Protocol)</h2>
+    
+    <h3>Modes</h3>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Mode</th><th>Client Says</th><th>Connection</th></tr>
+            <tr><td><strong>Active</strong></td><td>"You call me"</td><td>Server→Client (port 20)</td></tr>
+            <tr><td><strong>Passive</strong></td><td>"I'll call you"</td><td>Client→Server (random port)</td></tr>
+        </table>
+    </div>
+    
+    <h4>Commands</h4>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Command</th><th>Purpose</th><th>Example</th></tr>
+            <tr><td><span class="port-code">USER</span></td><td>Username</td><td>USER john</td></tr>
+            <tr><td><span class="port-code">PASS</span></td><td>Password</td><td>PASS secret123</td></tr>
+            <tr><td><span class="port-code">LIST</span></td><td>Directory</td><td>LIST</td></tr>
+            <tr><td><span class="port-code">RETR</span></td><td>Download</td><td>RETR file.txt</td></tr>
+            <tr><td><span class="port-code">STOR</span></td><td>Upload</td><td>STOR file.txt</td></tr>
+        </table>
+    </div>
+    <p><strong>Ports:</strong> Control=<span class="port-code">21</span>, Data=<span class="port-code">20</span> | <strong>Security:</strong> FTPS, SFTP</p>
+</div>
+
+<!-- WWW & HTTP -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-earth-americas"></i> WWW & HTTP</h2>
+    
+    <h3>WWW Components</h3>
+    <ul>
+        <li>Browser (Chrome, Firefox)</li>
+        <li>Web Server (Apache, Nginx)</li>
+        <li>HTML/CSS/JS content</li>
+        <li>HTTP/HTTPS protocol</li>
+    </ul>
+    
+    <h4>URL Structure</h4>
+    <div class="code-block">
+        https://www.example.com:8080/path/to/page.html?query=value#section<br>
+        Protocol | Domain | Port | Path | Params | Anchor
+    </div>
+    
+    <h4>HTTP Methods</h4>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Method</th><th>Purpose</th><th>Idempotent</th><th>Safe</th></tr>
+            <tr><td><strong>GET</strong></td><td>Retrieve</td><td>Yes</td><td>Yes</td></tr>
+            <tr><td><strong>POST</strong></td><td>Send</td><td>No</td><td>No</td></tr>
+            <tr><td>PUT</td><td>Update</td><td>Yes</td><td>No</td></tr>
+            <tr><td>DELETE</td><td>Remove</td><td>Yes</td><td>No</td></tr>
+        </table>
+    </div>
+    
+    <h4>Status Codes</h4>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Code</th><th>Category</th><th>Meaning</th></tr>
+            <tr><td><span class="port-code">200</span></td><td>Success</td><td>OK</td></tr>
+            <tr><td><span class="port-code">301</span></td><td>Redirection</td><td>Moved Permanently</td></tr>
+            <tr><td><span class="port-code">404</span></td><td>Client Error</td><td>Not Found</td></tr>
+            <tr><td><span class="port-code">500</span></td><td>Server Error</td><td>Internal Error</td></tr>
+        </table>
+    </div>
+    <p><strong>Ports:</strong> HTTP=<span class="port-code">80</span>, HTTPS=<span class="port-code">443</span></p>
+</div>
+
+<!-- TELNET -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-terminal"></i> TELNET</h2>
+    <p>Remote terminal access over TCP <span class="port-code">23</span>. Gets interactive shell remotely.</p>
+    
+    <h4>TELNET vs SSH</h4>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Feature</th><th>TELNET</th><th>SSH</th></tr>
+            <tr><td>Encryption</td><td>None</td><td>Encrypted</td></tr>
+            <tr><td>Auth</td><td>Password</td><td>Keys+Password</td></tr>
+            <tr><td>Security</td><td><strong>Insecure</strong></td><td><strong>Secure</strong></td></tr>
+            <tr><td>Port</td><td><span class="port-code">23</span></td><td><span class="port-code">22</span></td></tr>
+        </table>
+    </div>
+</div>
+
+<!-- BLUETOOTH -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-bluetooth"></i> Bluetooth</h2>
+    
+    <h3>Versions</h3>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Version</th><th>Speed</th><th>Range</th><th>Feature</th></tr>
+            <tr><td>4.0</td><td>1 Mbps</td><td>10m</td><td>Low Energy</td></tr>
+            <tr><td>5.0</td><td>2 Mbps</td><td>40m</td><td>Better range</td></tr>
+            <tr><td>5.2</td><td>2 Mbps</td><td>240m</td><td>LE Audio</td></tr>
+        </table>
+    </div>
+    
+    <p><strong>Architecture:</strong> Piconet (1 master + 7 slaves), Scatternet | <strong>Frequency:</strong> 2.4 GHz</p>
+</div>
+
+<!-- FIREWALLS -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-shield-halved"></i> Firewalls</h2>
+    
+    <h3>Types</h3>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Type</th><th>Layer</th><th>Inspection</th></tr>
+            <tr><td>Packet Filter</td><td>L3</td><td>IP/Port</td></tr>
+            <tr><td>Stateful</td><td>L3+L4</td><td>Connection tracking</td></tr>
+            <tr><td>Proxy</td><td>L7</td><td>Deep inspection</td></tr>
+            <tr><td>NGFW</td><td>All</td><td>App-aware + threats</td></tr>
+        </table>
+    </div>
+    
+    <h4>Rules Example</h4>
+    <div class="code-block">
+        ALLOW TCP 192.168.1.0/24 → 80 (web)<br>
+        ALLOW UDP 192.168.1.0/24 → 53 (DNS)<br>
+        DENY TCP port 23 (Telnet)<br>
+        ALLOW ESTABLISHED,RELATED
+    </div>
+</div>
+
+<!-- CRYPTOGRAPHY -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-lock"></i> Cryptography</h2>
+    
+    <h3>Key Concepts</h3>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr><th>Term</th><th>Meaning</th></tr>
+            <tr><td>Symmetric</td><td>Same key (AES)</td></tr>
+            <tr><td>Asymmetric</td><td>Public/private (RSA)</td></tr>
+            <tr><td>Hash</td><td>One-way (SHA-256)</td></tr>
+            <tr><td>Signature</td><td>Authenticity proof</td></tr>
+        </table>
+    </div>
+    
+    <h4>TLS Handshake</h4>
+    <ol style="margin-left:25px;">
+        <li>Client Hello (ciphers)</li>
+        <li>Server Hello + Certificate</li>
+        <li>Client verifies → Key exchange</li>
+        <li>Session keys derived</li>
+        <li>Encrypted data</li>
+    </ol>
+    
+    <p><strong>Algorithms:</strong> AES-256, RSA-4096, SHA-256, Diffie-Hellman</p>
+</div>
+
+<!-- NAVIGATION -->
+<div class="nav-buttons">
+     <a href="Unit1.html" class="btn">Unit 1<i class="fa-solid fa-chevron-left"></i></a>
+    <a href="Unit2.html" class="btn">Unit 2 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit3.html" class="btn">Unit 3 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit4.html" class="btn">Unit 4 <i class="fa-solid fa-chevron-right"></i></a>
+</div>
+
+</div>
+
+<footer>
+    <p><i class="fa-solid fa-graduation-cap"></i> © 2026 Yash Fauzdar & Sangam Kaushik | BCA Complete Computer Networks</p>
+</footer>
+</body>
+</html>

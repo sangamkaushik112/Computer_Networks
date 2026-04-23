@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Computer Networks Project</title>
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+:root {
+    --bg: #667eea;
+    --card: rgba(255,255,255,0.15);
+    --text: #f1f1f1;
+}
+
+body.dark {
+    --bg: #121212;
+    --card: #1e1e1e;
+    --text: #f1f1f1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Background */
+body {
+    background: linear-gradient(135deg, var(--bg), #764ba2);
+    color: var(--text);
+    transition: 0.4s;
+}
+
+/* NAVBAR */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    background: rgba(0,0,0,0.2);
+}
+
+nav h1 {
+    font-size: 24px;
+}
+
+nav button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    background: #00d4ff;
+    color: #df1111;
+}
+
+/* CONTAINER */
+.container {
+    width: 85%;
+    margin: auto;
+    margin-top: 40px;
+}
+
+/* CARD */
+.card {
+    background: var(--card);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    animation: fadeIn 1s ease;
+}
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    padding:8px 16px;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* HEADINGS */
+h2, h3 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 20px;
+}
+
+/* LIST */
+ul {
+    padding-left: 20px;
+}
+li {
+    margin-bottom: 8px;
+}
+
+/* TABLE */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+}
+th, td {
+    border: 1px solid rgba(255,255,255,0.3);
+    padding: 10px;
+}
+
+/* BUTTON */
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    border-radius: 25px;
+    background: #ff4b2b;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.btn:hover {
+    background: #ffcc00;
+    color: black;
+    transform: scale(1.1);
+}
+  </style>
+</head>
+<body>
+
+<nav>
+  <h1><i class="fa-solid fa-network-wired"></i> BCA Computer Networks</h1>
+   <a href="index.html" class="home-btn">
+  <i class="fa-solid fa-house"></i> Home
+</a>
+</nav>
+
+
+<div class="container">
+  <div class="card">
+
+    <!-- Complete Computer Networks Theory (no quiz, no 3‑way handshake, no ARP line) -->
+    <h1>Unit 1:</h1>
+    
+    <h2> Computer Networks</h2>
+
+    <p>Computer networks connect multiple devices to share resources, exchange data, and communicate. From simple LANs in homes to the global Internet connecting billions of devices, networks form the backbone of modern computing.</p>
+
+    <!-- What is a Network? -->
+    <h3>What is a Network?</h3>
+    <p><span class="bold">Definition</span>: A computer network is a collection of interconnected devices (computers, servers, printers, mobile phones, IoT devices) that communicate using shared communication protocols and media.</p>
+    <ul>
+      <li>Resource sharing (files, printers, storage).</li>
+      <li>Data exchange and communication.</li>
+      <li>Centralized management and security.</li>
+    </ul>
+
+    <!-- Network Types -->
+    <h3>Types of Networks</h3>
+    <table>
+      <tr>
+        <th>Type</th>
+        <th>Range / Scope</th>
+        <th>Example</th>
+      </tr>
+      <tr>
+        <td>PAN</td>
+        <td>1–10 m (personal)</td>
+        <td>Bluetooth, USB devices.</td>
+      </tr>
+      <tr>
+        <td>LAN</td>
+        <td>Building / campus</td>
+        <td>Office WiFi, home network.</td>
+      </tr>
+      <tr>
+        <td>MAN</td>
+        <td>City</td>
+        <td>Cable TV city network.</td>
+      </tr>
+      <tr>
+        <td>WAN</td>
+        <td>Country / global</td>
+        <td>Internet.</td>
+      </tr>
+    </table>
+
+    <!-- Important Devices -->
+    <h3>Important Devices</h3>
+    <table>
+      <tr>
+        <th>Device</th>
+        <th>Function</th>
+      </tr>
+      <tr>
+        <td>Router</td>
+        <td>Routing between networks (IP layer).</td>
+      </tr>
+      <tr>
+        <td>Switch</td>
+        <td>MAC‑based forwarding within LAN.</td>
+      </tr>
+      <tr>
+        <td>Hub</td>
+        <td>Simple broadcast on LAN.</td>
+      </tr>
+      <tr>
+        <td>Bridge</td>
+        <td>Connects LAN segments.</td>
+      </tr>
+    </table>
+
+    <!-- Network Topologies -->
+    <h3>Network Topologies</h3>
+    <table>
+      <tr>
+        <th>Topology</th>
+        <th>Structure</th>
+        <th>Pros / Cons</th>
+      </tr>
+      <tr>
+        <td>Bus</td>
+        <td>Single backbone cable.</td>
+        <td>Simple & cheap; one fault can break whole network.</td>
+      </tr>
+      <tr>
+        <td>Star</td>
+        <td>All devices → hub/switch.</td>
+        <td>Easy fault isolation; central point of failure.</td>
+      </tr>
+      <tr>
+        <td>Ring</td>
+        <td>Devices in circle, token‑passing.</td>
+        <td>Predictable; ring breaks with one link failure.</td>
+      </tr>
+      <tr>
+        <td>Mesh</td>
+        <td>Every device connected to many others.</td>
+        <td>Very reliable; complex and expensive.</td>
+      </tr>
+    </table>
+
+    <!-- The Internet -->
+    <h3>The Internet</h3>
+    <p>The Internet is a global network of networks using the TCP/IP protocol suite. It is decentralized and connects government, academic, corporate, and private networks.</p>
+    <ul>
+      <li>Packet switching.</li>
+      <li>Scalability (handles billions of devices).</li>
+      <li>Resilience (no single point of failure).</li>
+      <li>Tier‑1, Tier‑2, Tier‑3 ISPs.</li>
+      <li>1983: ARPANET → TCP/IP.</li>
+      <li>1991: WWW (HTTP/HTML).</li>
+      <li>2000s: Broadband explosion.</li>
+      <li>2020s: 5G, IoT explosion.</li>
+    </ul>
+
+    <!-- Protocols -->
+    <h3>Protocols</h3>
+    <p>Protocols are standardized rules for communication.</p>
+    <ul>
+      <li>Syntax: data format (fields, sizes).</li>
+      <li>Semantics: meaning of each field.</li>
+      <li>Timing: speed, when to send, timeouts.</li>
+      <li>Error control: checksums, ACK/NACK.</li>
+    </ul>
+    <table>
+      <tr>
+        <th>Protocol</th>
+        <th>Layer</th>
+        <th>Purpose</th>
+      </tr>
+      <tr>
+        <td>Ethernet</td>
+        <td>Data Link</td>
+        <td>LAN communication (MAC addresses).</td>
+      </tr>
+      <tr>
+        <td>IP</td>
+        <td>Network</td>
+        <td>Logical addressing and routing.</td>
+      </tr>
+      <tr>
+        <td>TCP</td>
+        <td>Transport</td>
+        <td>Reliable, connection‑oriented delivery.</td>
+      </tr>
+      <tr>
+        <td>UDP</td>
+        <td>Transport</td>
+        <td>Unreliable, fast datagram transport.</td>
+      </tr>
+      <tr>
+        <td>HTTP</td>
+        <td>Application</td>
+        <td>Web browsing.</td>
+      </tr>
+    </table>
+
+    <!-- OSI Model -->
+    <h3>OSI Model (7 Layers)</h3>
+    <p>The OSI model divides network communication into 7 conceptual layers:</p>
+    <ol>
+      <li>Physical → bits on wire.</li>
+      <li>Data Link → MAC addresses, frames.</li>
+      <li>Network → IP, routing.</li>
+      <li>Transport → TCP/UDP.</li>
+      <li>Session → connection management.</li>
+      <li>Presentation → encryption, compression.</li>
+      <li>Application → HTTP, DNS, FTP.</li>
+    </ol>
+    <p>Data flow: App Data → Segment → Packet → Frame → Bits (sending).</p>
+    <p>Receiving: Bits → Frame → Packet → Segment → App Data.</p>
+
+    <!-- TCP/IP Model -->
+    <h3>TCP/IP Model (4–5 Layers)</h3>
+    <p>Internet actually uses TCP/IP model:</p>
+    <ul>
+      <li>Network Access (Physical + Data Link): Ethernet, WiFi.</li>
+      <li>Internet (Network): IP, ICMP.</li>
+      <li>Transport: TCP, UDP.</li>
+      <li>Application (Session+Presentation+Application): HTTP, DNS, FTP, SMTP.</li>
+    </ul>
+
+    <!-- Addressing -->
+    <h3>Addressing in Networks</h3>
+    <p>Addresses uniquely identify source and destination.</p>
+    <table>
+      <tr>
+        <th>Address Type</th>
+        <th>Layer</th>
+        <th>Scope</th>
+        <th>Example</th>
+      </tr>
+      <tr>
+        <td>MAC (Physical)</td>
+        <td>Data Link</td>
+        <td>LAN only</td>
+        <td>00:1A:2B:3C:4D:5E</td>
+      </tr>
+      <tr>
+        <td>IP (Logical)</td>
+        <td>Network</td>
+        <td>Global</td>
+        <td>192.168.1.10</td>
+      </tr>
+      <tr>
+        <td>Port</td>
+        <td>Transport</td>
+        <td>Process</td>
+        <td>80 (HTTP)</td>
+      </tr>
+      <tr>
+        <td>URL</td>
+        <td>Application</td>
+        <td>Resource</td>
+        <td>google.com/path</td>
+      </tr>
+    </table>
+
+    <!-- TCP 3‑Way Handshake line is also REMOVED (no extra TCP section) -->
+
+  </div> <!-- End .card -->
+
+  <!-- NAVIGATION -->
+  <div style="text-align: center;">
+  
+    <a href="Unit2.html" class="btn">Unit 2<i class="fa-solid fa-chevron-left"></i></a>
+    <a href="Unit3.html" class="btn">Unit 3 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit4.html" class="btn">Unit 4 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit5.html" class="btn">Unit 5 <i class="fa-solid fa-chevron-right"></i></a>
+  </div>
+
+</div> <!-- End .container -->
+
+<!-- Updated Footer -->
+<footer>
+  © 2026 Yash Fauzdar & Sangam Kaushik | BCA Web Technology Project | Computer Networks Theory
+</footer>
+
+<script>
+function toggleMode(){
+  document.body.classList.toggle("dark");
+}
+</script>
+
+</body>
+</html>

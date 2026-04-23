@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Computer Networks Project</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    min-height:100vh;
+    line-height:1.6;
+}
+
+/* NAVBAR */
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 8%;
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav h1{ font-size:24px; color: #00d2ff; }
+nav a{ text-decoration:none; color:white; font-weight:bold; }
+
+.container{
+    width:92%;
+    max-width: 1200px;
+    margin:auto;
+    margin-top:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(12px);
+    padding:40px;
+    border-radius:20px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+h2{ margin-bottom:15px; color: #fdbb2d; border-bottom: 2px solid #ff4b2b; display: inline-block; padding-bottom: 5px; }
+h3{ margin-top:35px; margin-bottom:15px; color: #00d2ff; border-left: 4px solid #ff4b2b; padding-left: 15px; background: rgba(255,255,255,0.05); padding-top: 5px; padding-bottom: 5px;}
+
+p{ line-height: 1.8; margin-bottom: 15px; font-size: 15px; color: #e0e0e0; }
+
+/* TABLES */
+.table-box { overflow-x: auto; margin: 20px 0; border-radius: 10px; border: 1px solid rgba(255,255,255,0.1); }
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.3);
+}
+th, td { padding: 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+th { background: #ff4b2b; color: white; text-transform: uppercase; font-size: 13px; letter-spacing: 1px; }
+
+/* DIAGRAMS */
+.diagram {
+    background: #000;
+    color: #00ff41; /* Matrix green */
+    padding: 20px;
+    border-radius: 8px;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid #333;
+}
+
+.real-world {
+    background: rgba(0, 210, 255, 0.1);
+    border: 1px dashed #00d2ff;
+    padding: 15px;
+    margin: 15px 0;
+    border-radius: 8px;
+}
+
+.btn-container{ margin-top:40px; display:flex; justify-content:center; gap:20px; }
+.btn{
+    text-decoration:none;
+    padding:12px 30px;
+    border-radius:50px;
+    background:#ff4b2b;
+    color:white;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+.btn:hover{ background:#fdbb2d; color: #000; transform: translateY(-3px); }
+
+footer { text-align:center; margin-top:60px; padding:20px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; opacity: 0.7; }
+</style>
+</head>
+<body>
+
+<nav>
+    <h1><i class="fa-solid fa-network-wired"></i> BCA Computer Networks</h1>
+    <a href="index.html">Home</a>
+</nav>
+
+<div class="container">
+<div class="card">
+    <h1>Unit 2</h1>   
+    <h2> Physical Layer Fundamentals</h2>
+    <p><strong>Role:</strong> Converts bits into signals and vice versa. It manages bit synchronization (clocking), physical topology (bus, star), and standards such as RS-232, Ethernet PHY, and Wi-Fi PHY.</p>
+
+    <h3>Key Metrics</h3>
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Metric</th>
+                    <th>Description</th>
+                    <th>Formula / Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Bandwidth</td><td>Max data rate (Hz or bps)</td><td>100 MHz = ~200 Mbps (Nyquist)</td></tr>
+                <tr><td>Data Rate</td><td>Bits/sec capacity</td><td>Shannon: C = B log₂(1 + SNR)</td></tr>
+                <tr><td>Throughput</td><td>Actual speed after overhead</td><td>1 Gbps link &rarr; 940 Mbps real</td></tr>
+                <tr><td>Latency</td><td>Propagation delay</td><td>Speed of light: 200,000 km/s in fiber</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <p><strong>Example:</strong> Ethernet cable carries 1s as +5V pulses, 0s as 0V, at 10⁹ pulses/sec for Gigabit.</p>
+
+    <h3>Digital Transmission & Line Coding</h3>
+    <p>Digital Transmission sends data as discrete binary signals (square waves). Unlike analog, digital signals regenerate cleanly via repeaters.</p>
+    
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Scheme</th>
+                    <th>How It Works</th>
+                    <th>Pros / Cons</th>
+                    <th>Use Case</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>NRZ</td><td>1=high, 0=low</td><td>Simple / No sync for long 0s</td><td>USB 1.0</td></tr>
+                <tr><td>NRZI</td><td>Change=1, No change=0</td><td>Better sync / DC imbalance</td><td>USB 2.0</td></tr>
+                <tr><td>Manchester</td><td>Mid-bit transition</td><td>Self-clocking / 50% rate loss</td><td>Ethernet 10Base-T</td></tr>
+                <tr><td>4B/5B</td><td>4 bits &rarr; 5-bit code</td><td>Error detect / 25% overhead</td><td>Fast Ethernet</td></tr>
+                <tr><td>MLT-3</td><td>3 levels (+1,0,-1)</td><td>Low EMI / Complex</td><td>100Base-TX</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="diagram">
+Diagram (Digital Signal Flow):
+
+Bits: 1 0 1 1 0     
+NRZ:    ____     ____  ____              → Repeater (Regenerate) →     ____     ____
+Manchester: _/‾\_ ‾\_/  _/‾\_ _/‾\_ ‾\_/
+    </div>
+
+    <h3>Transmission Modes</h3>
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr><th>Mode</th><th>Direction</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Simplex</td><td>One-way</td><td>Keyboard &rarr; PC</td></tr>
+                <tr><td>Half-Duplex</td><td>Two-way, one at a time</td><td>Walkie-talkie</td></tr>
+                <tr><td>Full-Duplex</td><td>Simultaneous two-way</td><td>Phone call</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="real-world"><strong>Real Example:</strong> Wi-Fi PHY encodes bits into OFDM symbols (64 subcarriers) for 802.11ac (1.3 Gbps).</div>
+
+    <h3>Multiplexing</h3>
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Works On</th>
+                    <th>How / Pros</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>FDM</td><td>Analog</td><td>Split bandwidth / No sync needed</td><td>AM/FM Radio, Cable TV</td></tr>
+                <tr><td>TDM</td><td>Digital</td><td>Time slots / Full bandwidth use</td><td>PCM telephony (E1/T1)</td></tr>
+                <tr><td>WDM</td><td>Optical</td><td>Different wavelengths / Huge capacity</td><td>Fiber backbone (DWDM)</td></tr>
+                <tr><td>CDM</td><td>Digital/Analog</td><td>Unique codes / Secure</td><td>3G Mobile (CDMA)</td></tr>
+                <tr><td>STATMUX</td><td>Digital</td><td>Dynamic slots / Efficient</td><td>ISDN, Frame Relay</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="diagram">
+Diagram (FDM):
+Source1 --+   f1 Modulator --> Composite Signal (f1+f2+f3) --> f1 Demod --> Dest1
+Source2 --+--> f2             ~~~~/\/\/~~~~/\/\/~~~~         f2 Demod --> Dest2
+Source3 --+   f3 Modulator --> Guard Bands Prevent Overlap  f3 Demod --> Dest3
+
+TDM Example (Frame):
+Time Slots: | Ch1 | Ch2 | Ch3 | Ch1 | Ch2 | Ch3 |  (Sync bit at start)
+    </div>
+
+    <h3>Transmission Media</h3>
+    <p><strong>Guided Media (Wired):</strong></p>
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr><th>Type</th><th>Bandwidth</th><th>Distance</th><th>Attenuation</th><th>Use Case</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Twisted Pair</td><td>100 MHz - 1 GHz</td><td>100m</td><td>High</td><td>LAN (Ethernet)</td></tr>
+                <tr><td>Coaxial</td><td>1 GHz</td><td>500m</td><td>Medium</td><td>Cable TV</td></tr>
+                <tr><td>Fiber Optic</td><td>100 THz</td><td>100km+</td><td>Very Low</td><td>Internet Backbone</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p><strong>Unguided Media (Wireless):</strong></p>
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr><th>Type</th><th>Frequency</th><th>Range</th><th>Issues</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Radio</td><td>3 KHz - 40 GHz</td><td>10km</td><td>Interference</td><td>Wi-Fi, Bluetooth</td></tr>
+                <tr><td>Microwave</td><td>2 - 40 GHz</td><td>50km</td><td>LOS, Weather</td><td>Cellular Towers</td></tr>
+                <tr><td>Infrared</td><td>300 GHz - 400 THz</td><td>10m</td><td>Walls block</td><td>TV Remote</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="diagram">
+Diagram (Media Comparison):
+Twisted Pair: [RJ45]--//~~//~~--[PC]  (Twists reduce crosstalk)
+Coaxial:      [Core][Shield]--===--[TV]
+Fiber:        [Core][Cladding]--***--[Router]  (*=Light pulses)
+    </div>
+
+    <h3>Circuit Switched Networks</h3>
+    <p>Establishes a <strong>dedicated end-to-end path</strong> before data transfer. Phases: 1. Setup, 2. Data Transfer, 3. Teardown.</p>
+    
+    <div class="table-box">
+        <table>
+            <thead>
+                <tr><th>Aspect</th><th>Circuit Switching</th><th>Packet Switching</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Resource Use</td><td>Dedicated (wasteful if idle)</td><td>Shared (statistical mux)</td></tr>
+                <tr><td>Delay</td><td>Fixed (predictable)</td><td>Variable (queuing)</td></tr>
+                <tr><td>Efficiency</td><td>Poor for bursty data</td><td>High</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="diagram">
+Diagram (Circuit Switch Network):
+Station A --+-- Switch1 --+-- Switch2 --+-- Station D            
+            | Ch1        | Ch1        | Ch1
+Station B --+-- Ch2      +-- Ch2      +-- Station E
+Path A→D: Dedicated Ch1 across switches (reserved till hangup)
+    </div>
+    
+    <div class="real-world"><strong>Real Example:</strong> Old landline call (64 Kbps circuit). Modern VoIP uses Packet Switching.</div>
+
+</div>
+
+<div class="btn-container">
+    <a href="Unit1.html" class="btn">Unit 1<i class="fa-solid fa-chevron-left"></i></a>
+    <a href="Unit3.html" class="btn">Unit 3 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit4.html" class="btn">Unit 4 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit5.html" class="btn">Unit 5 <i class="fa-solid fa-chevron-right"></i></a>
+</div>
+
+</div>
+
+<footer>
+    © 2026 Yash Fauzdar & Sangam Kaushik | BCA Web Technology Project | Computer Networks Theory
+</footer>
+
+</body>
+</html>

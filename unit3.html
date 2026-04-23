@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit 3 - Complete Network & Transport Layer</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#667eea,#764ba2);
+    color:white;
+    min-height:100vh;
+    line-height:1.6;
+}
+
+/* NAVBAR */
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 8%;
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+nav h1{
+    font-size:26px;
+    font-weight:700;
+}
+
+nav a{
+    text-decoration:none;
+    color:white;
+    font-weight:bold;
+    padding:8px 16px;
+    border-radius:20px;
+    transition:0.3s;
+}
+
+nav a:hover{
+    background:rgba(255,255,255,0.2);
+}
+
+/* MAIN CONTAINER */
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+    margin-top:40px;
+    padding-bottom:60px;
+}
+
+/* CONTENT CARDS */
+
+.section-card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 15px 35px rgba(0,0,0,0.3);
+    margin-bottom:30px;
+    border:1px solid rgba(255,255,255,0.2);
+}
+
+.section-card h2{
+    margin-bottom:20px;
+    color:#ffcc00;
+    font-size:28px;
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.section-card h3{
+    margin:25px 0 15px 0;
+    color:#ff4b2b;
+    font-size:22px;
+    padding-left:10px;
+    border-left:4px solid #ff4b2b;
+}
+
+.section-card h4{
+    color:#ffd700;
+    margin:15px 0 10px 0;
+    font-size:18px;
+}
+
+.section-card p{
+    font-size:16px;
+    margin-bottom:15px;
+    text-align:justify;
+}
+
+.section-card ul{
+    margin:15px 0 15px 25px;
+}
+
+.section-card li{
+    margin-bottom:8px;
+    font-size:15px;
+}
+
+.section-card strong{
+    color:#ffcc00;
+}
+
+/* TABLE STYLING */
+.table-container{
+    overflow-x:auto;
+    margin:20px 0;
+}
+
+.compare-table{
+    width:100%;
+    border-collapse:collapse;
+    background:rgba(255,255,255,0.1);
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.compare-table th,
+.compare-table td{
+    padding:12px;
+    text-align:left;
+    border-bottom:1px solid rgba(255,255,255,0.2);
+}
+
+.compare-table th{
+    background:#ff4b2b;
+    color:white;
+    font-weight:bold;
+}
+
+.compare-table tr:hover{
+    background:rgba(255,255,255,0.2);
+}
+
+/* UNIT NAVIGATION */
+
+.nav-buttons{
+    margin-top:60px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+}
+
+.btn{
+    text-decoration:none;
+    padding:15px 30px;
+    border-radius:30px;
+    background:linear-gradient(45deg, #ff4b2b, #ff6b35);
+    color:white;
+    font-weight:bold;
+    font-size:16px;
+    transition:0.3s;
+    box-shadow:0 5px 15px rgba(255,75,43,0.4);
+}
+
+.btn:hover{
+    background:linear-gradient(45deg, #ffcc00, #ffd700);
+    color:black;
+    transform:translateY(-3px);
+    box-shadow:0 8px 25px rgba(255,204,0,0.4);
+}
+
+/* FOOTER */
+
+footer{
+    text-align:center;
+    margin-top:80px;
+    padding:30px;
+    opacity:0.9;
+    background:rgba(0,0,0,0.2);
+    border-radius:20px;
+    margin-bottom:20px;
+}
+
+@media (max-width:768px){
+    .container{
+        width:95%;
+        padding:10px;
+    }
+    
+    .section-card{
+        padding:20px;
+    }
+    
+    nav{
+        padding:15px 5%;
+        flex-direction:column;
+        gap:10px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h1><i class="fa-solid fa-network-wired"></i> Computer Networks</h1>
+    <a href="index.html"><i class="fa-solid fa-house"></i> Home</a>
+</nav>
+
+<div class="container">
+
+<!-- NETWORK LAYER SECTION -->
+<div class="section-card">
+    <h1>Unit 3</h1>
+    <h2><i class="fa-solid fa-layer-group"></i> 1. Network Layer (Layer 3)</h2>
+    
+    <p>
+        The <strong>Network Layer</strong> sits at <strong>Layer 3</strong> of the OSI model, between the <strong>Transport Layer (Layer 4)</strong> and the <strong>Data Link Layer (Layer 2)</strong>. 
+        Its main job is to move packets from the <strong>source host to the destination host</strong>, possibly across <strong>multiple networks and routers</strong>.
+    </p>
+    
+    <h3>Key Responsibilities</h3>
+    <ul>
+        <li><strong>Logical addressing</strong> (IP addresses) to identify hosts and networks uniquely</li>
+        <li><strong>Routing</strong> – deciding the best path for each packet through routers</li>
+        <li><strong>Forwarding</strong> – sending each packet to the correct next hop based on the routing table</li>
+        <li><strong>Fragmentation and reassembly</strong> (if needed) when packets are too big for the underlying link's MTU</li>
+        <li>Support for <strong>subnetting, NAT, and multicast</strong> via additional protocols like IGMP</li>
+    </ul>
+    
+    <h4>Common Network-Layer Protocols</h4>
+    <ul>
+        <li><strong>IP (IPv4/IPv6)</strong> – basic addressing and packet delivery</li>
+        <li><strong>ICMP</strong> – control and error messages</li>
+        <li><strong>IGMP</strong> – multicast group management</li>
+    </ul>
+</div>
+
+<!-- LOGICAL ADDRESSING SECTION -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-address-book"></i> 2. Logical Addressing (IP Addresses)</h2>
+    
+    <p>
+        <strong>Logical addressing</strong> means assigning <strong>software-based, globally meaningful addresses</strong> (like <strong>IP addresses</strong>) to hosts and routers, instead of fixed hardware addresses. 
+        These addresses are used by the Network Layer to find the right path across the Internet.
+    </p>
+    
+    <h3>Main Points</h3>
+    <ul>
+        <li><strong>Logical address = IP address</strong> (e.g., <code>192.168.1.10</code>, <code>172.16.0.5</code>, <code>2001:db8::1</code>)</li>
+        <li>Assigned by the <strong>network</strong> (via DHCP or manually), not burned into the NIC like MAC</li>
+        <li>Single IP address consists of two parts:
+            <ul style="margin-top:5px;">
+                <li><strong>Network part</strong> – identifies which network the host belongs to</li>
+                <li><strong>Host part</strong> – identifies the specific device inside that network</li>
+            </ul>
+        </li>
+        <li>Through <strong>subnetting</strong> and <strong>CIDR</strong>, divides large IP spaces into smaller subnets</li>
+        <li>Used by <strong>routers</strong> to forward packets hop-by-hop until reaching right destination</li>
+    </ul>
+</div>
+
+<!-- ROUTING PROTOCOLS SECTION -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-route"></i> 3. Routing Protocols</h2>
+    
+    <p>
+        <strong>Routing protocols</strong> are the rules routers use to <strong>discover networks</strong> and <strong>build routing tables</strong> so they know how to send packets.
+    </p>
+    
+    <h3>Main Types</h3>
+    <div class="table-container">
+        <table class="compare-table">
+            <tr>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Examples</th>
+            </tr>
+            <tr>
+                <td><strong>Distance-Vector</strong></td>
+                <td>Each router tells neighbors: "I can reach network X in N hops"<br>Share full routing table periodically</td>
+                <td>RIP, IGRP</td>
+            </tr>
+            <tr>
+                <td><strong>Link-State</strong></td>
+                <td>Flood Link-State Packets (LSPs) to whole network<br>Build complete topology map + Dijkstra's SPF</td>
+                <td>OSPF, IS-IS</td>
+            </tr>
+            <tr>
+                <td><strong>Hybrid</strong></td>
+                <td>Combine distance-vector + link-state for fast convergence</td>
+                <td>EIGRP (Cisco)</td>
+            </tr>
+            <tr>
+                <td><strong>Exterior Gateway</strong></td>
+                <td>Between Autonomous Systems (AS)<br>Internet backbone protocol</td>
+                <td>BGP</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<!-- ICMP SECTION -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-bug"></i> 4. ICMP (Internet Control Message Protocol)</h2>
+    
+    <p>
+        <strong>ICMP</strong> is a <strong>Network-Layer protocol</strong> that runs <strong>on top of IP</strong> (protocol number 1). 
+        It sends <strong>control messages and error reports</strong> to help diagnose and manage IP communication.
+    </p>
+    
+    <h3>Key Functions</h3>
+    <ul>
+        <li><strong>Error reporting:</strong> Destination Unreachable, Time Exceeded, Parameter Problem</li>
+        <li><strong>Diagnostic tools:</strong>
+            <ul style="margin-top:5px;">
+                <li><code>ping</code> = ICMP Echo Request/Reply (reachability + RTT)</li>
+                <li><code>traceroute</code> = ICMP Time Exceeded (hop discovery)</li>
+            </ul>
+        </li>
+        <li><strong>Control messages:</strong> Redirect (better next-hop), Source Quench (obsolete)</li>
+    </ul>
+</div>
+
+<!-- IGMP SECTION -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-users"></i> 5. IGMP (Internet Group Management Protocol)</h2>
+    
+    <p>
+        <strong>IGMP</strong> manages <strong>IPv4 multicast group memberships</strong> on local networks between hosts and local multicast router.
+    </p>
+    
+    <h3>How It Works</h3>
+    <ul>
+        <li><strong>Router Query:</strong> "Which multicast groups are you interested in?"</li>
+        <li><strong>Host Report:</strong> Reply for desired groups (Class D: 224.0.0.0-239.255.255.255)</li>
+        <li><strong>Leave Group:</strong> IGMPv2/v3 Leave message</li>
+        <li>Router maintains <strong>membership table</strong> and forwards only to active LANs</li>
+    </ul>
+    
+    <p><strong>Use Cases:</strong> Live streaming, IPTV, distributed applications</p>
+</div>
+
+<!-- TCP SECTION -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-link"></i> 6. TCP (Transmission Control Protocol)</h2>
+    
+    <p>
+        <strong>TCP</strong> is <strong>Layer 4, connection-oriented, reliable, ordered, flow-controlled</strong> protocol running on top of IP.
+    </p>
+    
+    <h3>Key Features</h3>
+    <ul>
+        <li><strong>3-way Handshake:</strong> SYN → SYN-ACK → ACK</li>
+        <li><strong>Reliable:</strong> Sequence numbers + ACKs + Retransmission</li>
+        <li><strong>Ordered:</strong> Reassemble segments correctly</li>
+        <li><strong>Flow Control:</strong> Sliding window mechanism</li>
+        <li><strong>Congestion Control:</strong> Slow-start, Congestion avoidance, Fast recovery</li>
+    </ul>
+    
+    <p><strong>Common Uses:</strong> HTTP/HTTPS, FTP, SMTP/POP/IMAP, SSH/Telnet</p>
+</div>
+
+<!-- UDP SECTION -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-rocket"></i> 7. UDP (User Datagram Protocol)</h2>
+    
+    <p>
+        <strong>UDP</strong> is <strong>Layer 4, connectionless, lightweight</strong> protocol with 8-byte header.
+    </p>
+    
+    <h3>Characteristics</h3>
+    <ul>
+        <li><strong>No connection setup</strong> – send immediately</li>
+        <li><strong>Unreliable</strong> – no ACKs, retransmission, or ordering</li>
+        <li><strong>No flow/congestion control</strong> in UDP itself</li>
+        <li><strong>Uses:</strong> VoIP, Live video, Games, DNS, DHCP</li>
+    </ul>
+</div>
+
+<!-- UDP CONGESTION SECTION -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-exclamation-triangle"></i> 8. UDP & Congestion Control</h2>
+    
+    <p>
+        <strong>UDP has NO congestion control</strong> unlike TCP, so high-rate UDP can congest networks.
+    </p>
+    
+    <h3>Solutions</h3>
+    <ul>
+        <li><strong>Application-level control:</strong> Measure loss/RTT, reduce rate</li>
+        <li><strong>QUIC protocol:</strong> TCP-like reliability on UDP</li>
+        <li><strong>RFC 8085:</strong> Guidelines for UDP congestion control</li>
+    </ul>
+</div>
+
+<!-- BIG PICTURE SECTION -->
+<div class="section-card">
+    <h2><i class="fa-solid fa-globe"></i> 9. Big Picture Integration</h2>
+    
+    <div class="table-container">
+        <table class="compare-table">
+            <tr>
+                <th>Layer</th>
+                <th>Protocols</th>
+                <th>Key Functions</th>
+            </tr>
+            <tr>
+                <td><strong>Network Layer</strong></td>
+                <td>IP + ICMP + IGMP</td>
+                <td>Logical addressing, Routing, Multicast</td>
+            </tr>
+            <tr>
+                <td><strong>Transport Layer</strong></td>
+                <td>TCP vs UDP</td>
+                <td>TCP: Reliable, ordered<br>UDP: Fast, real-time</td>
+            </tr>
+        </table>
+    </div>
+    
+    <p>
+        <strong>Network Layer:</strong> End-to-end packet delivery across networks<br>
+        <strong>Transport Layer:</strong> Process-to-process reliable vs real-time communication
+    </p>
+</div>
+
+<!-- NAVIGATION TO OTHER UNITS -->
+<div class="nav-buttons">
+     <a href="Unit1.html" class="btn">Unit 1<i class="fa-solid fa-chevron-left"></i></a>
+    <a href="Unit2.html" class="btn">Unit 2 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit4.html" class="btn">Unit 4 <i class="fa-solid fa-chevron-right"></i></a>
+    <a href="Unit5.html" class="btn">Unit 5 <i class="fa-solid fa-chevron-right"></i></a>
+
+</div>
+
+<footer>
+    <p><i class="fa-solid fa-graduation-cap"></i> © 2026 Yash Fauzdar & Sangam Kaushik | BCA Web Technology Project | Complete Computer Networks</p>
+</footer>
+
+</body>
+</html>
